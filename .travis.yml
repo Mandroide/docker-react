@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run mandroide/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker-react"
+  env: " Dockerreact-env"
+  bucket_name: "elasticbeanstalk-us-west-2-316372775821"
+  bucket_path: "docker-react"
+  on:
+    branch: main
+  access_key_id: $ACCESS_KEY
+  secret_access_key:
+    secure: "$SECRET_ACCESS_KEY"
